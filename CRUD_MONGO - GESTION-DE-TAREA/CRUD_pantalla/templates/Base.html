@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block titulo %}
+        {% endblock%}
+        <link rel="stylesheet" href="{% static 'styles/formularios.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/formulario_invisible.css' %}">
+
+    </head>
+
+    <body>
+        {% block contenido %}
+        {% endblock %}
+    </body>
+
+</html>

@@ -1,0 +1,40 @@
+Lista de URLS para modificar hacer uso de la API
+(Se debe de cambiar el {email} por el email de un usuario valido, así como el {nombre_tarea} y 
+{nombre_antiguo} que deben cambiarse por el nombre de la tarea que desee modificar o eliminar)
+
+Usuario
+GET
+(Encontrar un usuario) 
+http://localhost:8000/API/usuarios/{email}
+
+POST
+(Agregar un nuevo usuario)
+('http://localhost:8000/API/usuarios/
+
+DELETE
+(Eliminar un usuario)
+http://localhost:8000/API/usuarios/{email}')
+
+
+PUT
+(Modificar un usuario)
+http://localhost:8000/API/usuarios/{email}
+
+
+
+Tareas
+GET
+(Encontrar las tareas de un usuario)
+http://localhost:8000/API/tareas/?usuario={email}
+
+POST
+(Agregar una nueva tarea)
+http://localhost:8000/API/tareas/
+
+DELETE
+(Eliminar una tarea de un usuario) 
+http://localhost:8000/API/tareas/{nombre_tarea}?usuario={email}
+
+PUT
+(Modificar una tarea)
+http://localhost:8000/API/tareas/{nombre_antiguo}/?usuario={email}

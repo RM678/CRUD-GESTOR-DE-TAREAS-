@@ -1,0 +1,96 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block contenido %}
+{% load humanize %}
+
+{% block titulo %}
+<title>Inicio</title>
+{% endblock%}
+
+<form action="{% url 'logout' %}" method="post" class="form_i">
+    {% csrf_token %}
+    <button type="submit" class="boton_form_i">Cerrar sesión</button>
+</form>
+
+    <h1>Lista de tareas</h1>
+    
+    
+    <table>
+        <tr style="background-color:#45a049; margin:0px; padding:0px; color:white;">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Acciones</th>
+        </tr>
+        {% for tarea in tareas %}
+    <tr>
+      <td>{{ tarea.nombre }}</td>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.fecha_inicio }}</td>
+      <td>{{ tarea.fecha_final }}</td>
+      <td>
+        <form id="editar-tarea" method="post" action="{% url 'Editar_tarea' %}" class="form_i">
+            {% csrf_token %}
+            <input type="hidden" name="nombre" value="{{ tarea.nombre }}">
+            <input type="hidden" name="descripcion" value="{{ tarea.descripcion }}">
+            <input type="hidden" name="fecha_inicio" value="{{ tarea.fecha_inicio }}">
+            <input type="hidden" name="fecha_final" value="{{ tarea.fecha_final }}">
+
+            <button type="submit" class="boton_form_i" style="background-color:blue;width:80%;">Editar</button>
+        </form>     
+        
+        <form id="eliminar-tarea" method="post" action="{% url 'Eliminar_tarea' %}" class="form_i">
+            {% csrf_token %}
+            <input type="hidden" name="nombre" value="{{ tarea.nombre }}">
+            <button type="submit" class="boton_form_i" style="background-color:red; width:80%;">Eliminar</button>
+        </form>      
+        
+    </td>
+        </tr>
+{% endfor %}
+    </table>
+    
+    <button type="button" onclick="agregarTarea()">Agregar tarea</button>
+    
+
+    <!-- Formulario para agregar tarea -->
+<div id="formulario-agregar-tarea" class="formulario" style="display: none;text-align:center;">
+    <form method="POST" action="{% url 'Agregar_tarea' %}" style="text-align:center;">
+        {% csrf_token %}
+        <h2>Agregar tarea</h2>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="fecha_inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="fecha_final">Fecha Final:</label>
+            <input type="date" id="fecha_final" name="fecha_final" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+    <script>
+        function agregarTarea() {
+            document.getElementById("formulario-agregar-tarea").style.display = "block";
+        }
+    
+        function editarTarea(id) {
+            // Aquí puedes mostrar un formulario para editar la tarea con el id especificado
+        }
+    
+        function eliminarTarea(id) {
+            // Aquí puedes eliminar la tarea con el id especificado
+        }
+    </script>
+    
+{% endblock%}

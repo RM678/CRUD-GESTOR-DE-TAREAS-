@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Dato</title>
+</head>
+<body>
+    <h1>Agregar Dato</h1>
+    
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required><br><br>
+        
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>

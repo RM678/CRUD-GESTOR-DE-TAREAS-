@@ -1,0 +1,34 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Editar</title>
+{% endblock%}
+
+{% block contenido %}
+
+  <!-- Formulario para agregar tarea -->
+  <div id="formulario-editar" class="formulario" style="text-align:center;">
+    <form method="POST" action="{% url 'Guardar_modificacion' %}" style="text-align:center;">
+        {% csrf_token %}
+        <h2>Editar tarea</h2>
+        <div class="form-group">
+            <input type="hidden" name="nombre_antiguo" value="{{ tarea.nombre }}">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ tarea.nombre|escapejs }}" required>        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control" rows="3">{{ tarea.descripcion|escapejs }}</textarea>        </div>
+        <div class="form-group">
+            <label for="fecha_inicio">Fecha Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" value="{{ tarea.fecha_inicio|date:"Y-m-d" }}" required>        </div>
+        <div class="form-group">
+            <label for="fecha_final">Fecha Final:</label>
+            <input type="date" id="fecha_final" name="fecha_final" class="form-control" value="{{ tarea.fecha_final|date:"Y-m-d" }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+
+{% endblock %}
